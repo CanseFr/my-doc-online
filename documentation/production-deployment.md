@@ -57,9 +57,12 @@ Ajoute ces variables dans l'environment GitHub `production` ou dans les reposito
   - nom du conteneur sur le serveur, par exemple `road-map-archi`
 - `PRODUCTION_APP_PORT`
   - port expose sur le serveur, par exemple `80` ou `8080`
+
+## Variable optionnelle
+
 - `PRODUCTION_APP_URL`
   - URL publique de production, par exemple `https://roadmap.example.com`
-  - optionnel dans l'etat actuel du workflow
+  - utile comme metadata de documentation, mais non necessaire au workflow actuel
 
 ## Preparation du serveur
 
