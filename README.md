@@ -1,73 +1,168 @@
-# React + TypeScript + Vite
+# Road Map Archi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Visual educational roadmap for software engineering, software architecture, and backend expertise.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Road Map Archi is a React + TypeScript application designed to turn a dense learning roadmap into a guided visual experience.
 
-## React Compiler
+Instead of exposing a long static list of topics, the project organizes knowledge into progressive learning bubbles. Each bubble represents a meaningful step in the journey, and each step opens a structured reading panel with:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- key outcomes to master
+- grouped learning areas
+- curated links to documentation, articles, guides, and specifications
 
-## Expanding the ESLint configuration
+The goal is simple: make advanced engineering topics easier to explore, revisit, and grow over time.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Intent
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This project is built as a long-term learning map for topics such as:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- software fundamentals
+- clean code and patterns
+- software architecture
+- backend and API design
+- databases
+- DevOps and infrastructure
+- software quality
+- security
+- teamwork and expert posture
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+It is not meant to be a fixed roadmap.
+
+It is meant to evolve continuously:
+
+- new bubbles can be added
+- new resources can enrich existing bubbles
+- topics can be reorganized as the roadmap grows
+
+## Experience
+
+The current application provides:
+
+- a dark visual roadmap split into phases
+- clickable knowledge bubbles
+- a reading panel with learning outcomes and curated resources
+- a progressive structure from fundamentals to expert posture
+- a content model designed to scale over time
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- ESLint
+
+## Content Architecture
+
+The UI is intentionally separated from the learning content.
+
+### Application
+
+- [`src/App.tsx`](/Users/canse/Desktop/road-map-archi/src/App.tsx): page composition and selected bubble state
+- [`src/components`](/Users/canse/Desktop/road-map-archi/src/components): visual building blocks
+- [`src/types/roadmap.ts`](/Users/canse/Desktop/road-map-archi/src/types/roadmap.ts): typed content model
+
+### Roadmap Data
+
+The roadmap source of truth lives in [`src/data/roadmap`](/Users/canse/Desktop/road-map-archi/src/data/roadmap):
+
+- [`craftFoundationsStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/craftFoundationsStage.ts)
+- [`systemDesignStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/systemDesignStage.ts)
+- [`deliveryPlatformStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/deliveryPlatformStage.ts)
+- [`teamLeadershipStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/teamLeadershipStage.ts)
+- [`index.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/index.ts): stage assembly and derived stats
+
+### Editorial Documentation
+
+The Markdown documentation lives in [`documentation`](/Users/canse/Desktop/road-map-archi/documentation):
+
+- chapter-by-chapter roadmap references
+- resource-oriented learning material
+- maintenance notes for future content updates
+
+See [`roadmap-maintenance.md`](/Users/canse/Desktop/road-map-archi/documentation/roadmap-maintenance.md) for the content update workflow.
+
+## Local Development
+
+### Install
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Start the app
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+### Validate the project
+
+```bash
+npm run build
+npm run lint
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+## How to Extend the Roadmap
+
+The project was structured so future iterations stay fast and predictable.
+
+### Add a new learning bubble
+
+1. Pick the relevant phase in [`src/data/roadmap`](/Users/canse/Desktop/road-map-archi/src/data/roadmap).
+2. Add a new node inside the matching stage file.
+3. Define its title, summary, outcomes, and knowledge groups.
+4. Keep the `id` stable and unique.
+
+### Add new links
+
+1. Find the correct bubble.
+2. Find the correct knowledge group.
+3. Add the resource with a short label and a consistent type.
+
+### Add a new learning sub-topic
+
+1. Add a new `knowledgeGroup` to an existing bubble.
+2. Or create a new bubble if the topic deserves its own step.
+
+## Why This Structure Works
+
+This repository is optimized for gradual growth:
+
+- the visual layer is componentized
+- the roadmap content is typed
+- the data is split by learning phase
+- the documentation is separated from the UI
+- future content updates can be committed in small logical units
+
+That makes the project practical to maintain, review, and enrich over time.
+
+## Status
+
+Current state:
+
+- visual roadmap interface implemented
+- educational content integrated
+- maintenance workflow documented
+- build and lint passing
+
+## Future Direction
+
+Possible future improvements:
+
+- search and filtering by topic or level
+- progress tracking per bubble
+- tags for theory / practice / architecture / tooling
+- richer metadata per resource
+- synchronization between Markdown docs and app data
+
+---
+
+Built as an evolving engineering knowledge map, not as a one-shot static checklist.
