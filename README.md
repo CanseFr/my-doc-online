@@ -99,8 +99,10 @@ The Markdown documentation lives in [`documentation`](/Users/canse/Desktop/road-
 - chapter-by-chapter roadmap references
 - resource-oriented learning material
 - maintenance notes for future content updates
+- AI-first prompt templates for future roadmap enrichment
 
 See [`roadmap-maintenance.md`](/Users/canse/Desktop/road-map-archi/documentation/roadmap-maintenance.md) for the content update workflow.
+See [`ai-content-prompts.md`](/Users/canse/Desktop/road-map-archi/documentation/ai-content-prompts.md) for the recommended prompt format when asking AI to extend the roadmap.
 
 ## ✦ Local Development
 
@@ -132,6 +134,21 @@ npm run preview
 ## ✦ How to Extend the Roadmap
 
 The project was structured so future iterations stay fast and predictable.
+
+### 🤖 AI-first workflow
+
+This project is intended to evolve primarily with AI assistance.
+
+For that reason, roadmap updates should be requested with a prompt structure that is explicit about:
+
+- the target phase or existing bubble
+- the domain or theme to cover
+- the expected learning outcomes
+- the knowledge groups to create or extend
+- the resources to add or curate
+- the files that must be updated in both `documentation/` and `src/data/roadmap/`
+
+Use the prompt playbook in [`ai-content-prompts.md`](/Users/canse/Desktop/road-map-archi/documentation/ai-content-prompts.md) to keep future requests easy to implement and easy to review.
 
 ### ➕ Add a new learning bubble
 
