@@ -80,13 +80,6 @@
   color: var(--muted);
 }
 
-.workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.95fr);
-  gap: 1.5rem;
-  align-items: start;
-}
-
 .journey {
   display: grid;
   gap: 1.5rem;
@@ -227,12 +220,11 @@
 }
 
 .knowledge-panel {
-  position: sticky;
-  top: 1.5rem;
   display: grid;
   gap: 1.25rem;
   padding: 1.5rem;
-  max-height: calc(100vh - 3rem);
+  width: min(52rem, calc(100vw - 2rem));
+  max-height: min(90vh, 56rem);
   overflow-y: auto;
   border: 1px solid var(--border);
   border-radius: 1.75rem;
@@ -242,6 +234,36 @@
   box-shadow: var(--shadow-soft);
   scrollbar-width: thin;
   scrollbar-color: rgba(228, 135, 93, 0.6) rgba(255, 255, 255, 0.06);
+}
+
+.knowledge-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(4, 8, 12, 0.64);
+  backdrop-filter: blur(10px);
+}
+
+.knowledge-panel__close {
+  justify-self: end;
+  min-height: 2.6rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(182, 197, 210, 0.14);
+  border-radius: 999px;
+  background: rgba(20, 27, 35, 0.82);
+  color: var(--ink-strong);
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.knowledge-panel__close:hover {
+  transform: translateY(-1px);
+  border-color: rgba(228, 135, 93, 0.36);
 }
 
 .knowledge-panel::-webkit-scrollbar {
@@ -407,13 +429,8 @@
 }
 
 @media (max-width: 1100px) {
-  .workspace,
   .hero-panel {
     grid-template-columns: 1fr;
-  }
-
-  .knowledge-panel {
-    position: static;
   }
 }
 
