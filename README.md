@@ -100,9 +100,11 @@ The Markdown documentation lives in [`documentation`](/Users/canse/Desktop/road-
 - resource-oriented learning material
 - maintenance notes for future content updates
 - AI-first prompt templates for future roadmap enrichment
+- production deployment checklist and CI/CD notes
 
 See [`roadmap-maintenance.md`](/Users/canse/Desktop/road-map-archi/documentation/roadmap-maintenance.md) for the content update workflow.
 See [`ai-content-prompts.md`](/Users/canse/Desktop/road-map-archi/documentation/ai-content-prompts.md) for the recommended prompt format when asking AI to extend the roadmap.
+See [`production-deployment.md`](/Users/canse/Desktop/road-map-archi/documentation/production-deployment.md) for the production deployment requirements and GitHub Actions setup.
 
 ## ✦ Local Development
 
