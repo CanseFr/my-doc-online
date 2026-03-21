@@ -2,7 +2,13 @@
 
 > Visual educational roadmap for software engineering, software architecture, and backend expertise.
 
-## Overview
+<p align="left">
+  <strong>Dark visual roadmap.</strong><br />
+  <strong>Curated engineering knowledge.</strong><br />
+  <strong>Built as a living learning system.</strong>
+</p>
+
+## ✦ Overview
 
 Road Map Archi is a React + TypeScript application designed to turn a dense learning roadmap into a guided visual experience.
 
@@ -14,7 +20,7 @@ Instead of exposing a long static list of topics, the project organizes knowledg
 
 The goal is simple: make advanced engineering topics easier to explore, revisit, and grow over time.
 
-## Project Intent
+## ✦ Project Intent
 
 This project is built as a long-term learning map for topics such as:
 
@@ -36,34 +42,47 @@ It is meant to evolve continuously:
 - new resources can enrich existing bubbles
 - topics can be reorganized as the roadmap grows
 
-## Experience
+## ✦ Vibe Coding Note
+
+This is a personal project and it is intentionally **100% vibe coded with AI**.
+
+That means the project is built through iterative collaboration with an AI coding assistant:
+
+- designing the roadmap structure
+- shaping the visual interface
+- organizing the educational content
+- refining the maintenance workflow over time
+
+The goal is not to hide that process, but to use it productively: fast iteration, clean structure, and continuous improvement.
+
+## ✦ Experience
 
 The current application provides:
 
-- a dark visual roadmap split into phases
-- clickable knowledge bubbles
-- a reading panel with learning outcomes and curated resources
-- a progressive structure from fundamentals to expert posture
-- a content model designed to scale over time
+- 🌒 a dark visual roadmap split into phases
+- 🫧 clickable knowledge bubbles
+- 📚 a reading panel with learning outcomes and curated resources
+- 🧭 a progressive structure from fundamentals to expert posture
+- 🧩 a content model designed to scale over time
 
-## Tech Stack
+## ✦ Tech Stack
 
-- React 19
-- TypeScript
-- Vite
-- ESLint
+- ⚛️ React 19
+- 🔷 TypeScript
+- ⚡ Vite
+- ✅ ESLint
 
-## Content Architecture
+## ✦ Content Architecture
 
 The UI is intentionally separated from the learning content.
 
-### Application
+### 🧱 Application
 
 - [`src/App.tsx`](/Users/canse/Desktop/road-map-archi/src/App.tsx): page composition and selected bubble state
 - [`src/components`](/Users/canse/Desktop/road-map-archi/src/components): visual building blocks
 - [`src/types/roadmap.ts`](/Users/canse/Desktop/road-map-archi/src/types/roadmap.ts): typed content model
 
-### Roadmap Data
+### 🗺️ Roadmap Data
 
 The roadmap source of truth lives in [`src/data/roadmap`](/Users/canse/Desktop/road-map-archi/src/data/roadmap):
 
@@ -73,7 +92,7 @@ The roadmap source of truth lives in [`src/data/roadmap`](/Users/canse/Desktop/r
 - [`teamLeadershipStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/teamLeadershipStage.ts)
 - [`index.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/index.ts): stage assembly and derived stats
 
-### Editorial Documentation
+### 📝 Editorial Documentation
 
 The Markdown documentation lives in [`documentation`](/Users/canse/Desktop/road-map-archi/documentation):
 
@@ -83,56 +102,56 @@ The Markdown documentation lives in [`documentation`](/Users/canse/Desktop/road-
 
 See [`roadmap-maintenance.md`](/Users/canse/Desktop/road-map-archi/documentation/roadmap-maintenance.md) for the content update workflow.
 
-## Local Development
+## ✦ Local Development
 
-### Install
+### 📦 Install
 
 ```bash
 npm install
 ```
 
-### Start the app
+### ▶️ Start the app
 
 ```bash
 npm run dev
 ```
 
-### Validate the project
+### 🧪 Validate the project
 
 ```bash
 npm run build
 npm run lint
 ```
 
-### Preview production build
+### 👀 Preview production build
 
 ```bash
 npm run preview
 ```
 
-## How to Extend the Roadmap
+## ✦ How to Extend the Roadmap
 
 The project was structured so future iterations stay fast and predictable.
 
-### Add a new learning bubble
+### ➕ Add a new learning bubble
 
 1. Pick the relevant phase in [`src/data/roadmap`](/Users/canse/Desktop/road-map-archi/src/data/roadmap).
 2. Add a new node inside the matching stage file.
 3. Define its title, summary, outcomes, and knowledge groups.
 4. Keep the `id` stable and unique.
 
-### Add new links
+### 🔗 Add new links
 
 1. Find the correct bubble.
 2. Find the correct knowledge group.
 3. Add the resource with a short label and a consistent type.
 
-### Add a new learning sub-topic
+### 🌱 Add a new learning sub-topic
 
 1. Add a new `knowledgeGroup` to an existing bubble.
 2. Or create a new bubble if the topic deserves its own step.
 
-## Why This Structure Works
+## ✦ Why This Structure Works
 
 This repository is optimized for gradual growth:
 
@@ -144,24 +163,24 @@ This repository is optimized for gradual growth:
 
 That makes the project practical to maintain, review, and enrich over time.
 
-## Status
+## ✦ Status
 
 Current state:
 
-- visual roadmap interface implemented
-- educational content integrated
-- maintenance workflow documented
-- build and lint passing
+- ✅ visual roadmap interface implemented
+- ✅ educational content integrated
+- ✅ maintenance workflow documented
+- ✅ build and lint passing
 
-## Future Direction
+## ✦ Future Direction
 
 Possible future improvements:
 
-- search and filtering by topic or level
-- progress tracking per bubble
-- tags for theory / practice / architecture / tooling
-- richer metadata per resource
-- synchronization between Markdown docs and app data
+- 🔎 search and filtering by topic or level
+- 📍 progress tracking per bubble
+- 🏷️ tags for theory / practice / architecture / tooling
+- 🧠 richer metadata per resource
+- 🔄 synchronization between Markdown docs and app data
 
 ---
 
