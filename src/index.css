@@ -1,0 +1,115 @@
+:root {
+  --bg: #0d1217;
+  --bg-strong: #131a21;
+  --surface: rgba(18, 24, 31, 0.82);
+  --border: rgba(182, 197, 210, 0.14);
+  --ink-strong: #f2efe8;
+  --ink: #d5dbe2;
+  --muted: #9caab7;
+  --muted-strong: #bcc8d3;
+  --accent: #d6a36f;
+  --accent-strong: #e4875d;
+  --shadow-soft:
+    0 18px 40px rgba(0, 0, 0, 0.32),
+    0 4px 12px rgba(0, 0, 0, 0.18);
+  --shadow-focus:
+    0 22px 44px rgba(228, 135, 93, 0.18),
+    0 8px 18px rgba(0, 0, 0, 0.2);
+  --sans:
+    'Avenir Next', 'Segoe UI', 'Helvetica Neue', 'Noto Sans', Arial, sans-serif;
+  --heading:
+    'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'New York', serif;
+
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(214, 163, 111, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(85, 116, 154, 0.12), transparent 24%),
+    linear-gradient(180deg, var(--bg), var(--bg-strong));
+  font: 17px/1.6 var(--sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 95%);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--heading);
+  color: var(--ink-strong);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 5vw, 4.75rem);
+  line-height: 0.95;
+  max-width: 12ch;
+}
+
+h2 {
+  font-size: clamp(1.55rem, 2.3vw, 2.2rem);
+  line-height: 1.05;
+}
+
+h3 {
+  font-size: 1.2rem;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0;
+  color: var(--muted);
+}
+
+#root {
+  width: min(1440px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.4rem 0 2rem;
+}
+
+@media (max-width: 720px) {
+  :root {
+    font-size: 16px;
+  }
+
+  #root {
+    width: min(100% - 1rem, 1440px);
+    padding-top: 0.75rem;
+  }
+}
