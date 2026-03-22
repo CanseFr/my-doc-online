@@ -11,7 +11,7 @@ Quand tu demandes une evolution, l'IA doit idealement pouvoir faire tout cela sa
 - identifier la bonne phase
 - identifier la bonne bulle ou decider qu'il faut en creer une nouvelle
 - mettre a jour la documentation Markdown
-- mettre a jour la data TypeScript dans `src/data/roadmap/`
+- mettre a jour la data TypeScript dans `src/data/expertises/` et/ou `src/data/roadmaps/`
 - garder une structure coherente avec l'application existante
 
 Plus le prompt precise le contexte, plus la modification sera rapide et fiable.
@@ -35,7 +35,8 @@ Pour chaque demande, essaye de toujours preciser :
 - si l'IA doit aussi proposer des liens manquants
 - si l'IA doit mettre a jour :
   - `documentation/`
-  - `src/data/roadmap/`
+  - `src/data/expertises/`
+  - `src/data/roadmaps/`
   - les deux
 
 Par defaut, pour ce projet, il vaut mieux demander la mise a jour des deux.
@@ -95,7 +96,8 @@ Si certains liens manquent, propose des ressources pertinentes en plus.
 
 Fichiers a mettre a jour:
 - documentation correspondante
-- src/data/roadmap
+- src/data/expertises
+- src/data/roadmaps
 
 Contraintes:
 - garde la coherence avec la structure actuelle
@@ -155,7 +157,8 @@ Si besoin, propose des liens complementaires.
 
 Fichiers a mettre a jour:
 - documentation correspondante
-- src/data/roadmap
+- src/data/expertises
+- src/data/roadmaps
 
 Contraintes:
 - ne change pas inutilement les ids existants
@@ -192,7 +195,8 @@ Liens a ajouter:
 
 Fichiers a mettre a jour:
 - documentation correspondante
-- src/data/roadmap
+- src/data/expertises
+- src/data/roadmaps
 
 Contraintes:
 - garde les labels courts
@@ -216,7 +220,7 @@ Si tu veux aller au plus court, un prompt comme celui-ci reste exploitable :
 ```text
 Ajoute une nouvelle bulle sur le theme "rate limiting" dans la phase backend/API.
 Je veux 3 sous-sections: principes, strategies, implementation.
-Ajoute les ressources dans la documentation et dans src/data/roadmap.
+Ajoute les ressources dans la documentation et dans les modules concernes sous src/data/expertises et src/data/roadmaps.
 Si besoin, choisis la meilleure position dans la roadmap.
 ```
 

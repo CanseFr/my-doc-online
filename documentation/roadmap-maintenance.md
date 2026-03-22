@@ -1,23 +1,26 @@
-# Maintenance de la roadmap
+# Maintenance des expertises et roadmaps
 
 Le rendu visuel est deja suffisamment propre. Le point critique pour les evolutions futures est donc le workflow de contenu.
 
 ## Source de verite
 
-La source de verite de l'application est dans `src/data/roadmap/`.
+La source de verite de l'application est maintenant decoupee en deux niveaux :
 
-- `index.ts` assemble toutes les phases et calcule les statistiques.
-- `craftFoundationsStage.ts` contient la phase 1.
-- `systemDesignStage.ts` contient la phase 2.
-- `deliveryPlatformStage.ts` contient la phase 3.
-- `teamLeadershipStage.ts` contient la phase 4.
+- `src/data/expertises/` declare le catalogue des expertises visibles depuis la home page.
+- `src/data/roadmaps/<expertise>/` contient la roadmap detaillee de chaque expertise.
 
-Les fichiers Markdown dans `documentation/` servent de support editorial et de lecture, mais l'interface React lit uniquement les donnees TypeScript de `src/data/roadmap/`.
+Pour l'expertise logicielle actuelle :
+
+- `src/data/expertises/softwareEngineering.ts` declare les metadonnees de l'expertise.
+- `src/data/roadmaps/softwareEngineering/index.ts` assemble toutes les phases et calcule les statistiques.
+- les fichiers `*Stage.ts` contiennent les phases.
+
+Les fichiers Markdown dans `documentation/` servent de support editorial et de lecture, mais l'interface React lit uniquement les donnees TypeScript dans `src/data/`.
 
 ## Ajouter une nouvelle bulle
 
 1. Identifier la phase logique.
-2. Ouvrir le fichier de phase correspondant dans `src/data/roadmap/`.
+2. Ouvrir le namespace roadmap correspondant dans `src/data/roadmaps/`.
 3. Ajouter un nouvel objet dans `nodes`.
 4. Renseigner :
    - `id` unique et stable
@@ -60,7 +63,7 @@ Si le sujet devient trop large :
 - Ne pas changer un `id` existant sans raison forte.
 - Preferer plusieurs petites bulles coherentes plutot qu'une bulle enorme.
 - Garder les fichiers de phase thematiques et lisibles.
-- Si un chapitre grossit trop, il pourra etre scinde dans un sous-dossier sans toucher au rendu.
+- Si une expertise grossit trop, il est possible d'ajouter un nouveau namespace dans `src/data/roadmaps/` sans toucher aux autres expertises.
 - Toujours lancer :
   - `npm run build`
   - `npm run lint`

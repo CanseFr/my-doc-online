@@ -1,4 +1,4 @@
-import type { RoadmapStage } from '../../types/roadmap'
+import type { RoadmapStage } from '../../../types/roadmap'
 
 export const teamLeadershipStage: RoadmapStage = {
   id: 'team-leadership',

@@ -45,3 +45,10 @@ export interface RoadmapStats {
   resourceCount: number
   stageCount: number
 }
+
+export interface RoadmapContent {
+  stages: RoadmapStage[]
+  nodes: RoadmapNode[]
+  nodesById: Record<string, RoadmapNode>
+  stats: RoadmapStats
+}

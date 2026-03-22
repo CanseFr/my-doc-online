@@ -1,92 +1,63 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { KnowledgePanel } from './components/KnowledgePanel'
-import { RoadmapHero } from './components/RoadmapHero'
-import { RoadmapStageSection } from './components/RoadmapStageSection'
-import {
-  roadmapNodes,
-  roadmapNodesById,
-  roadmapStages,
-  roadmapStats,
-} from './data/roadmap'
+import { ExpertiseCatalogPage } from './components/ExpertiseCatalogPage'
+import { ExpertiseRoadmapPage } from './components/ExpertiseRoadmapPage'
+import { NotFoundView } from './components/NotFoundView'
+import { expertiseCatalog, expertisesBySlug } from './data/expertises'
+import { buildExpertisePath, getRouteFromPathname, type AppRoute } from './routing'
 
 function App() {
-  const [selectedNodeId, setSelectedNodeId] = useState(roadmapNodes[0].id)
-  const [isReaderOpen, setIsReaderOpen] = useState(false)
-
-  const selectedNode = roadmapNodesById[selectedNodeId]
-  const selectedNodeIndex = roadmapNodes.findIndex((node) => node.id === selectedNodeId)
-  const previousNode =
-    selectedNodeIndex > 0 ? roadmapNodes[selectedNodeIndex - 1] : null
-  const nextNode =
-    selectedNodeIndex < roadmapNodes.length - 1
-      ? roadmapNodes[selectedNodeIndex + 1]
-      : null
+  const [route, setRoute] = useState<AppRoute>(() =>
+    getRouteFromPathname(window.location.pathname),
+  )
 
   useEffect(() => {
-    if (!isReaderOpen) {
-      return undefined
+    const handlePopState = () => {
+      setRoute(getRouteFromPathname(window.location.pathname))
     }
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsReaderOpen(false)
-      }
-    }
-
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('popstate', handlePopState)
 
     return () => {
-      document.body.style.overflow = previousOverflow
-      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('popstate', handlePopState)
     }
-  }, [isReaderOpen])
+  }, [])
 
-  const handleSelectNode = (nodeId: string) => {
-    setSelectedNodeId(nodeId)
-    setIsReaderOpen(true)
+  const navigate = (pathname: string) => {
+    if (pathname !== window.location.pathname) {
+      window.history.pushState({}, '', pathname)
+    }
+
+    setRoute(getRouteFromPathname(pathname))
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  return (
-    <div className="app-shell">
-      <RoadmapHero stats={roadmapStats} />
-
-      <main className="journey" aria-label="Parcours de roadmap">
-        <div className="section-heading">
-          <span className="section-heading__eyebrow">Parcours guide</span>
-          <h2>Un chemin progressif, de la base du code jusqu&apos;a la posture d&apos;architecte.</h2>
-          <p>
-            Chaque bulle represente une etape d&apos;apprentissage. Clique sur une
-            etape pour ouvrir les savoirs associes, puis continue la lecture
-            selon le fil logique propose.
-          </p>
-        </div>
-
-        <div className="journey__stages">
-          {roadmapStages.map((stage, index) => (
-            <RoadmapStageSection
-              key={stage.id}
-              stage={stage}
-              stageIndex={index}
-              activeNodeId={selectedNodeId}
-              onSelectNode={handleSelectNode}
-            />
-          ))}
-        </div>
-      </main>
-
-      <KnowledgePanel
-        isOpen={isReaderOpen}
-        node={selectedNode}
-        previousNode={previousNode}
-        nextNode={nextNode}
-        onClose={() => setIsReaderOpen(false)}
-        onSelectNode={handleSelectNode}
+  if (route.type === 'home') {
+    return (
+      <ExpertiseCatalogPage
+        expertises={expertiseCatalog}
+        onOpenExpertise={(slug) => navigate(buildExpertisePath(slug))}
       />
-    </div>
-  )
+    )
+  }
+
+  if (route.type === 'expertise') {
+    const expertise = expertisesBySlug[route.expertiseSlug]
+
+    if (!expertise) {
+      return <NotFoundView onGoHome={() => navigate('/')} />
+    }
+
+    return (
+      <ExpertiseRoadmapPage
+        key={expertise.id}
+        expertise={expertise}
+        onGoHome={() => navigate('/')}
+      />
+    )
+  }
+
+  return <NotFoundView onGoHome={() => navigate('/')} />
 }
 
 export default App

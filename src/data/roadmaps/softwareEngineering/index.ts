@@ -1,4 +1,9 @@
-import type { RoadmapNode, RoadmapStage, RoadmapStats } from '../../types/roadmap'
+import type {
+  RoadmapContent,
+  RoadmapNode,
+  RoadmapStage,
+  RoadmapStats,
+} from '../../../types/roadmap'
 import { craftFoundationsStage } from './craftFoundationsStage'
 import { deliveryPlatformStage } from './deliveryPlatformStage'
 import { systemDesignStage } from './systemDesignStage'
@@ -33,4 +38,11 @@ export const roadmapStats: RoadmapStats = {
       ),
     0,
   ),
+}
+
+export const softwareEngineeringRoadmap: RoadmapContent = {
+  stages: roadmapStages,
+  nodes: roadmapNodes,
+  nodesById: roadmapNodesById,
+  stats: roadmapStats,
 }

@@ -1,21 +1,24 @@
 import type { RoadmapStats } from '../types/roadmap'
 
 interface RoadmapHeroProps {
+  eyebrow: string
+  title: string
+  description: string
   stats: RoadmapStats
 }
 
-export function RoadmapHero({ stats }: RoadmapHeroProps) {
+export function RoadmapHero({
+  eyebrow,
+  title,
+  description,
+  stats,
+}: RoadmapHeroProps) {
   return (
     <header className="hero-panel">
       <div className="hero-panel__copy">
-        <span className="hero-panel__eyebrow">Roadmap architecture & engineering</span>
-        <h1>Roadmap expertise logicielle.</h1>
-        <p>
-          Le parcours organise les fondamentaux, l&apos;architecture, la livraison
-          et la posture expert dans une interface de lecture continue. Chaque
-          bulle ouvre les savoirs clefs et les ressources utiles pour apprendre,
-          reviser ou approfondir.
-        </p>
+        <span className="hero-panel__eyebrow">{eyebrow}</span>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </div>
 
       <div className="hero-panel__meta" aria-label="Statistiques du parcours">

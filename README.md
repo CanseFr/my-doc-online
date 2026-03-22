@@ -78,19 +78,26 @@ The UI is intentionally separated from the learning content.
 
 ### 🧱 Application
 
-- [`src/App.tsx`](/Users/canse/Desktop/road-map-archi/src/App.tsx): page composition and selected bubble state
+- [`src/App.tsx`](/Users/canse/Desktop/road-map-archi/src/App.tsx): route selection and top-level page orchestration
 - [`src/components`](/Users/canse/Desktop/road-map-archi/src/components): visual building blocks
-- [`src/types/roadmap.ts`](/Users/canse/Desktop/road-map-archi/src/types/roadmap.ts): typed content model
+- [`src/routing.ts`](/Users/canse/Desktop/road-map-archi/src/routing.ts): URL parsing and route generation
+- [`src/types/roadmap.ts`](/Users/canse/Desktop/road-map-archi/src/types/roadmap.ts): typed roadmap model
+- [`src/types/expertise.ts`](/Users/canse/Desktop/road-map-archi/src/types/expertise.ts): typed expertise catalog model
 
-### 🗺️ Roadmap Data
+### 🗺️ Expertise Data
 
-The roadmap source of truth lives in [`src/data/roadmap`](/Users/canse/Desktop/road-map-archi/src/data/roadmap):
+The expertise catalog source of truth lives in [`src/data/expertises`](/Users/canse/Desktop/road-map-archi/src/data/expertises):
 
-- [`craftFoundationsStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/craftFoundationsStage.ts)
-- [`systemDesignStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/systemDesignStage.ts)
-- [`deliveryPlatformStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/deliveryPlatformStage.ts)
-- [`teamLeadershipStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/teamLeadershipStage.ts)
-- [`index.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmap/index.ts): stage assembly and derived stats
+- [`index.ts`](/Users/canse/Desktop/road-map-archi/src/data/expertises/index.ts): expertise registry used by the home page and routes
+- [`softwareEngineering.ts`](/Users/canse/Desktop/road-map-archi/src/data/expertises/softwareEngineering.ts): metadata for the existing software expertise
+
+Each roadmap now lives in its own namespace under [`src/data/roadmaps`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps):
+
+- [`src/data/roadmaps/softwareEngineering/index.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/index.ts): stage assembly and derived stats
+- [`src/data/roadmaps/softwareEngineering/craftFoundationsStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/craftFoundationsStage.ts)
+- [`src/data/roadmaps/softwareEngineering/systemDesignStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/systemDesignStage.ts)
+- [`src/data/roadmaps/softwareEngineering/deliveryPlatformStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/deliveryPlatformStage.ts)
+- [`src/data/roadmaps/softwareEngineering/teamLeadershipStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/teamLeadershipStage.ts)
 
 ### 📝 Editorial Documentation
 
@@ -148,16 +155,17 @@ For that reason, roadmap updates should be requested with a prompt structure tha
 - the expected learning outcomes
 - the knowledge groups to create or extend
 - the resources to add or curate
-- the files that must be updated in both `documentation/` and `src/data/roadmap/`
+- the files that must be updated in both `documentation/` and the relevant module under `src/data/`
 
 Use the prompt playbook in [`ai-content-prompts.md`](/Users/canse/Desktop/road-map-archi/documentation/ai-content-prompts.md) to keep future requests easy to implement and easy to review.
 
 ### ➕ Add a new learning bubble
 
-1. Pick the relevant phase in [`src/data/roadmap`](/Users/canse/Desktop/road-map-archi/src/data/roadmap).
-2. Add a new node inside the matching stage file.
-3. Define its title, summary, outcomes, and knowledge groups.
-4. Keep the `id` stable and unique.
+1. Pick the relevant expertise in [`src/data/expertises`](/Users/canse/Desktop/road-map-archi/src/data/expertises).
+2. Open the matching roadmap namespace in [`src/data/roadmaps`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps).
+3. Add a new node inside the matching stage file.
+4. Define its title, summary, outcomes, and knowledge groups.
+5. Keep the `id` stable and unique.
 
 ### 🔗 Add new links
 
