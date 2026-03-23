@@ -90,6 +90,8 @@ The expertise catalog source of truth lives in [`src/data/expertises`](/Users/ca
 
 - [`index.ts`](/Users/canse/Desktop/road-map-archi/src/data/expertises/index.ts): expertise registry used by the home page and routes
 - [`softwareEngineering.ts`](/Users/canse/Desktop/road-map-archi/src/data/expertises/softwareEngineering.ts): metadata for the existing software expertise
+- [`frontendReact.ts`](/Users/canse/Desktop/road-map-archi/src/data/expertises/frontendReact.ts): metadata for the React roadmap
+- [`frontendAngular.ts`](/Users/canse/Desktop/road-map-archi/src/data/expertises/frontendAngular.ts): metadata for the Angular roadmap
 
 Each roadmap now lives in its own namespace under [`src/data/roadmaps`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps):
 
@@ -98,6 +100,8 @@ Each roadmap now lives in its own namespace under [`src/data/roadmaps`](/Users/c
 - [`src/data/roadmaps/softwareEngineering/systemDesignStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/systemDesignStage.ts)
 - [`src/data/roadmaps/softwareEngineering/deliveryPlatformStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/deliveryPlatformStage.ts)
 - [`src/data/roadmaps/softwareEngineering/teamLeadershipStage.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/softwareEngineering/teamLeadershipStage.ts)
+- [`src/data/roadmaps/frontendReact/index.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/frontendReact/index.ts): React roadmap assembly and derived stats
+- [`src/data/roadmaps/frontendAngular/index.ts`](/Users/canse/Desktop/road-map-archi/src/data/roadmaps/frontendAngular/index.ts): Angular roadmap assembly and derived stats
 
 ### 📝 Editorial Documentation
 

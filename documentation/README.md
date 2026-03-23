@@ -17,3 +17,7 @@ Decoupage du fichier `base-roadmap.md` en un fichier par grand chapitre.
 ## Source
 
 - Roadmap d'origine : [base-roadmap.md](./base-roadmap.md)
+
+## Expertises specialisees
+
+- [Frontend Angular](./frontend-angular-roadmap.md)
