@@ -21,3 +21,4 @@ Decoupage du fichier `base-roadmap.md` en un fichier par grand chapitre.
 ## Expertises specialisees
 
 - [Frontend Angular](./frontend-angular-roadmap.md)
+- [Interview technique](./interview-roadmap.md)
