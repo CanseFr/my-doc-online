@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { ExpertiseCatalogPage } from './components/ExpertiseCatalogPage'
-import { ExpertiseRoadmapPage } from './components/ExpertiseRoadmapPage'
+import { ExpertiseDetailPage } from './components/ExpertiseDetailPage'
 import { NotFoundView } from './components/NotFoundView'
-import { expertiseCatalog, expertisesBySlug } from './data/expertises'
+import { ThemeCatalogPage } from './components/ThemeCatalogPage'
+import { expertisesBySlug } from './data/expertises'
+import { themesById, themeCatalog } from './data/themes'
 import { buildExpertisePath, getRouteFromPathname, type AppRoute } from './routing'
 
 function App() {
@@ -34,8 +35,8 @@ function App() {
 
   if (route.type === 'home') {
     return (
-      <ExpertiseCatalogPage
-        expertises={expertiseCatalog}
+      <ThemeCatalogPage
+        themes={themeCatalog}
         onOpenExpertise={(slug) => navigate(buildExpertisePath(slug))}
       />
     )
@@ -43,15 +44,17 @@ function App() {
 
   if (route.type === 'expertise') {
     const expertise = expertisesBySlug[route.expertiseSlug]
+    const theme = expertise ? themesById[expertise.themeId] : null
 
-    if (!expertise) {
+    if (!expertise || !theme) {
       return <NotFoundView onGoHome={() => navigate('/')} />
     }
 
     return (
-      <ExpertiseRoadmapPage
+      <ExpertiseDetailPage
         key={expertise.id}
         expertise={expertise}
+        theme={theme}
         onGoHome={() => navigate('/')}
       />
     )

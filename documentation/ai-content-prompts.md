@@ -1,238 +1,183 @@
 # AI Content Prompts
 
-Ce projet est pense pour evoluer principalement avec l'IA.
+Ce projet doit maintenant etre pilote avec un vocabulaire stable.
 
-Le but de ce guide est simple : donner un format de prompt suffisamment precis pour que l'IA puisse enrichir la roadmap rapidement, proprement, et sans ambiguite.
+## Vocabulaire officiel
 
-## Principe
+Toujours raisonner dans cet ordre :
 
-Quand tu demandes une evolution, l'IA doit idealement pouvoir faire tout cela sans interpretation excessive :
+1. `thematique`
+2. `expertise`
+3. `phase`
+4. `bulle`
+5. `savoir`
+6. `ressource`
 
-- identifier la bonne phase
-- identifier la bonne bulle ou decider qu'il faut en creer une nouvelle
-- mettre a jour la documentation Markdown
-- mettre a jour la data TypeScript dans `src/data/expertises/` et/ou `src/data/roadmaps/`
-- garder une structure coherente avec l'application existante
+Definitions :
 
-Plus le prompt precise le contexte, plus la modification sera rapide et fiable.
+- une `thematique` regroupe plusieurs expertises
+- une `expertise` est un parcours structure sur un sujet cible
+- une `phase` decoupe l expertise en grands blocs logiques
+- une `bulle` est une unite de consultation dans une phase
+- un `savoir` correspond a un `knowledgeGroup`
+- une `ressource` est un lien de documentation, guide, article, spec, course ou reference
 
-## Regle generale
+## Regle par defaut
 
-Pour chaque demande, essaye de toujours preciser :
+Quand je demande une evolution sans tout preciser, l IA doit partir du principe suivant :
 
-- le type de demande :
-  - nouvelle bulle
-  - nouvelle sous-section dans une bulle existante
-  - ajout de liens
-  - reorganisation de contenu
+1. lire les fichiers de `nouveau-fichier-a-traiter/`
+2. analyser les sujets presents
+3. regrouper ces sujets par thematique
+4. verifier si une expertise existe deja dans la bonne thematique
+5. enrichir cette expertise si le sujet s y rattache proprement
+6. sinon creer une nouvelle expertise et sa structure
+7. ajouter les ressources officielles et guides complementaires utiles
+8. mettre a jour `src/data/`
+
+Autrement dit, si je te dis seulement :
+
+> voici de nouveaux fichiers dans `nouveau-fichier-a-traiter`
+
+tu dois comprendre que le travail attendu est :
+
+- ingestion des fichiers
+- classification thematique
+- decision creation ou enrichissement
+- mise a jour de la structure applicative
+
+## Source de verite
+
+La source de verite est uniquement `src/data/`.
+
+Ne pas traiter `documentation/` comme une source metier. Ce dossier sert seulement au workflow et aux notes de maintenance.
+
+## Fichiers a mettre a jour selon le cas
+
+### Si une thematique doit etre creee
+
+- `src/data/themes/index.ts`
+- une ou plusieurs expertises dans `src/data/expertises/`
+- un ou plusieurs namespaces dans `src/data/roadmaps/`
+
+### Si une expertise existante doit etre enrichie
+
+- `src/data/expertises/<expertise>.ts` seulement si les metadonnees changent
+- `src/data/roadmaps/<expertise>/...`
+
+### Si seules des ressources manquent
+
+- uniquement la bulle cible dans `src/data/roadmaps/<expertise>/...`
+
+## Ce que l IA doit decider seule si la demande est incomplete
+
+- la thematique la plus logique
+- l expertise la plus logique
+- faut-il enrichir ou creer
 - la phase cible
-- la bulle cible si elle existe deja
-- le theme exact
-- le domaine technique concerne
-- les objectifs pedagogiques attendus
-- les sous-savoirs a couvrir
-- les liens a ajouter si tu en as deja
-- si l'IA doit aussi proposer des liens manquants
-- si l'IA doit mettre a jour :
-  - `documentation/`
-  - `src/data/expertises/`
-  - `src/data/roadmaps/`
-  - les deux
+- faut-il creer une nouvelle bulle
+- quels liens officiels et articles de support ajouter
 
-Par defaut, pour ce projet, il vaut mieux demander la mise a jour des deux.
-
-## Structure de prompt recommandee
-
-Tu peux reutiliser cette structure comme contrat de prompt :
+## Format de demande recommande
 
 ```text
 Type de demande:
+Fichiers source:
+Thematique cible:
+Expertise cible:
 Phase cible:
 Bulle cible:
-Theme principal:
-Domaine technique:
-Pourquoi ce sujet doit etre ajoute:
+Sujet a couvrir:
 Objectifs pedagogiques:
-Sous-sections a creer ou enrichir:
-Liens deja disponibles:
-L'IA doit-elle proposer d'autres ressources:
-Fichiers a mettre a jour:
-Contraintes de redaction:
+Contraintes:
 ```
 
-## Modele 1 - Ajouter une nouvelle bulle
+## Modele 1 - Traitement automatique de nouveaux fichiers
 
-Utilise ce modele quand un nouveau sujet merite sa propre etape dans la roadmap.
+Utilise ce modele quand tu deposes simplement des fichiers dans `nouveau-fichier-a-traiter`.
 
 ```text
-Je veux ajouter une nouvelle bulle de savoir dans la roadmap.
+Voici de nouveaux fichiers dans `nouveau-fichier-a-traiter`.
 
-Type de demande: nouvelle bulle
-Phase cible: [nom de la phase ou theme proche]
-Position souhaitee: [avant / apres telle bulle, ou laisse l'IA choisir]
-Theme principal: [titre du sujet]
-Domaine technique: [backend / architecture / securite / devops / qualite / base de donnees / autre]
-Pourquoi ce sujet doit etre ajoute: [raison pedagogique]
+Je veux que tu :
+- analyses tous les fichiers
+- regroupes les sujets par thematique
+- verifies si une expertise existe deja
+- completes l expertise existante si c est pertinent
+- crees une nouvelle expertise si necessaire
+- reorganises les phases et bulles si le decoupage actuel n est pas suffisant
+- ajoutes les ressources officielles et articles utiles
+- mettes a jour `src/data/`
+
+Contraintes:
+- traite chaque point present dans les fichiers
+- garde un decoupage logique et long terme
+- prefere plusieurs bulles claires plutot qu une bulle enorme
+```
+
+## Modele 2 - Ajouter une expertise dans une thematique existante
+
+```text
+Je veux ajouter une nouvelle expertise dans une thematique existante.
+
+Thematique cible: [nom exact]
+Nouvelle expertise: [titre]
+Sujet principal: [description courte]
 Objectifs pedagogiques:
 - [...]
 - [...]
-- [...]
 
-Sous-sections a creer:
-- [nom de la sous-section 1]
-- [nom de la sous-section 2]
-- [nom de la sous-section 3]
-
-Pour chaque sous-section, je veux:
-- une description courte
-- une liste de ressources educatives
-- une integration coherente dans la documentation et dans la data React
-
-Liens deja disponibles:
-- [url 1]
-- [url 2]
-
-Si certains liens manquent, propose des ressources pertinentes en plus.
-
-Fichiers a mettre a jour:
-- documentation correspondante
-- src/data/expertises
-- src/data/roadmaps
-
-Contraintes:
-- garde la coherence avec la structure actuelle
-- choisis un titre de bulle concis
-- choisis des ids stables
-- garde un decoupage logique et propre
+L IA doit :
+- creer les metadonnees d expertise
+- creer les phases
+- creer les bulles necessaires
+- ajouter les ressources utiles
+- mettre a jour `src/data/`
 ```
 
-## Ce dont l'IA a vraiment besoin pour une nouvelle bulle
-
-Si tu veux aller vite, les informations les plus utiles sont :
-
-- le theme principal
-- la phase cible
-- la raison pour laquelle la bulle doit exister
-- 2 a 5 sous-sections attendues
-- quelques mots-cles de domaine
-- des liens si tu en possedes deja
-
-Exemples de mots-cles utiles :
-
-- `event sourcing`
-- `distributed tracing`
-- `rate limiting`
-- `database migrations`
-- `blue green deployment`
-- `secure session management`
-
-## Modele 2 - Ajouter des sous-sections dans une bulle existante
-
-Utilise ce modele quand la bulle existe deja mais que son contenu doit etre enrichi.
+## Modele 3 - Enrichir une expertise d une thematique
 
 ```text
-Je veux enrichir une bulle de savoir deja existante.
+Je veux enrichir une expertise existante.
 
-Type de demande: ajout de sous-sections
-Phase cible: [nom de la phase]
-Bulle cible: [titre exact de la bulle]
-Theme a enrichir: [sujet precis]
-Domaine technique: [backend / architecture / securite / devops / qualite / base de donnees / autre]
-Pourquoi ce contenu manque aujourd'hui: [raison]
+Thematique cible: [nom exact]
+Expertise cible: [nom exact]
+Sujet a integrer: [description]
 
-Sous-sections a ajouter:
-- [nom de la sous-section 1]
-- [nom de la sous-section 2]
-
-Pour chaque sous-section, je veux:
-- une description courte et claire
-- des ressources adaptees au niveau du projet
-- une integration sans casser la structure actuelle
-
-Liens deja disponibles:
-- [url 1]
-- [url 2]
-
-Si besoin, propose des liens complementaires.
-
-Fichiers a mettre a jour:
-- documentation correspondante
-- src/data/expertises
-- src/data/roadmaps
+L IA doit decider :
+- dans quelle phase placer le sujet
+- s il faut enrichir une bulle existante
+- ou creer une nouvelle bulle
 
 Contraintes:
-- ne change pas inutilement les ids existants
-- garde la logique de la bulle actuelle
-- si le sujet devient trop gros, propose de creer une nouvelle bulle a la place
+- ne pas casser les ids existants
+- garder une structure lisible
+- ajouter des ressources si necessaire
 ```
 
-## Ce dont l'IA a vraiment besoin pour enrichir une bulle existante
-
-Les informations les plus utiles sont :
-
-- le nom exact de la bulle cible
-- le sujet manquant
-- le niveau de granularite attendu
-- la liste des sous-sections souhaites
-- les liens a integrer si tu en as deja
-
-## Modele 3 - Ajouter seulement des liens
-
-Utilise ce modele si la structure est deja bonne et que tu veux uniquement enrichir les ressources.
+## Modele 4 - Creer une nouvelle thematique avec ses expertises
 
 ```text
-Je veux ajouter de nouvelles ressources a une bulle existante.
+Je veux creer une nouvelle thematique.
 
-Type de demande: ajout de liens
-Phase cible: [nom de la phase]
-Bulle cible: [titre exact]
-Sous-section cible: [titre exact de la sous-section]
-Objectif: [revision / approfondissement / documentation officielle / exemples pratiques]
+Nouvelle thematique: [titre]
+Perimetre: [description]
+Expertises attendues:
+- [expertise 1]
+- [expertise 2]
 
-Liens a ajouter:
-- [label] - [url] - [type souhaite]
-- [label] - [url] - [type souhaite]
-
-Fichiers a mettre a jour:
-- documentation correspondante
-- src/data/expertises
-- src/data/roadmaps
-
-Contraintes:
-- garde les labels courts
-- garde les types coherents
-- ne modifie pas la structure si ce n'est pas necessaire
+L IA doit :
+- creer la thematique
+- creer les expertises necessaires
+- structurer chaque expertise en phases et bulles
+- ajouter les ressources de base
+- mettre a jour `src/data/`
 ```
 
-## Recommandations pour de meilleurs prompts
+## Rappels de qualite
 
-- Utilise le nom exact d'une bulle existante quand tu veux l'enrichir.
-- Dis si tu veux que l'IA choisisse la meilleure phase quand tu hesites.
-- Donne quelques mots-cles techniques plutot qu'une phrase trop vague.
-- Si tu as deja des liens, fournis-les directement.
-- Si tu veux aussi une mise a jour editoriale, dis explicitement de modifier `documentation/`.
-- Si tu veux que l'IA cree les ressources manquantes, dis-le clairement.
-
-## Prompt minimum acceptable
-
-Si tu veux aller au plus court, un prompt comme celui-ci reste exploitable :
-
-```text
-Ajoute une nouvelle bulle sur le theme "rate limiting" dans la phase backend/API.
-Je veux 3 sous-sections: principes, strategies, implementation.
-Ajoute les ressources dans la documentation et dans les modules concernes sous src/data/expertises et src/data/roadmaps.
-Si besoin, choisis la meilleure position dans la roadmap.
-```
-
-## Prompt ideal
-
-Le meilleur prompt est celui qui :
-
-- nomme clairement la phase
-- nomme clairement la bulle ou indique qu'il faut en creer une
-- explique le besoin pedagogique
-- liste les sous-sections attendues
-- donne quelques liens ou mots-cles
-- demande explicitement la mise a jour de la doc et de la data
-
-Avec ce niveau de precision, l'evolution du projet reste simple, rapide et propre pour l'IA comme pour le developpeur.
+- ne jamais laisser une expertise sans thematique
+- ne pas dupliquer un sujet deja couvert sans raison
+- si un sujet devient trop large, le sortir dans une nouvelle bulle
+- privilegier la documentation officielle quand elle existe
+- verifier build et lint apres modification

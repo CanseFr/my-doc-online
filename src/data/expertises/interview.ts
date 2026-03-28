@@ -3,8 +3,9 @@ import { interviewRoadmap } from '../roadmaps/interview'
 
 export const interviewExpertise: ExpertiseDefinition = {
   id: 'interview-preparation',
+  themeId: 'interview-preparation',
   slug: 'interview-technique',
-  kind: 'roadmap',
+  kind: 'expertise',
   eyebrow: 'Expertise 04',
   title: 'Interview technique',
   headline: 'Roadmap interview technique.',

@@ -2,8 +2,9 @@ import type { RoadmapContent } from './roadmap'
 
 export interface ExpertiseDefinition {
   id: string
+  themeId: string
   slug: string
-  kind: 'roadmap'
+  kind: 'expertise'
   eyebrow: string
   title: string
   headline: string

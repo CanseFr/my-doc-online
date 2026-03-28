@@ -1,78 +1,61 @@
-# Maintenance des expertises et roadmaps
-
-Le rendu visuel est deja suffisamment propre. Le point critique pour les evolutions futures est donc le workflow de contenu.
+# Maintenance de la structure
 
 ## Source de verite
 
-La source de verite de l'application est maintenant decoupee en deux niveaux :
+La source de verite de l application est `src/data/`.
 
-- `src/data/expertises/` declare le catalogue des expertises visibles depuis la home page.
-- `src/data/roadmaps/<expertise>/` contient la roadmap detaillee de chaque expertise.
+Le modele metier est :
 
-Pour l'expertise logicielle actuelle :
+- `thematique`
+- `expertise`
+- `phase`
+- `bulle`
+- `savoir`
+- `ressource`
 
-- `src/data/expertises/softwareEngineering.ts` declare les metadonnees de l'expertise.
-- `src/data/roadmaps/softwareEngineering/index.ts` assemble toutes les phases et calcule les statistiques.
-- les fichiers `*Stage.ts` contiennent les phases.
+Concretement :
 
-Les fichiers Markdown dans `documentation/` servent de support editorial et de lecture, mais l'interface React lit uniquement les donnees TypeScript dans `src/data/`.
+- `src/data/themes/` decrit les thematiques et l association des expertises
+- `src/data/expertises/` porte les metadonnees des expertises
+- `src/data/roadmaps/<expertise>/` porte le detail des phases et bulles d une expertise
 
-## Ajouter une nouvelle bulle
+## Workflow attendu
 
-1. Identifier la phase logique.
-2. Ouvrir le namespace roadmap correspondant dans `src/data/roadmaps/`.
-3. Ajouter un nouvel objet dans `nodes`.
-4. Renseigner :
-   - `id` unique et stable
-   - `chapter`
-   - `title`
-   - `summary`
-   - `effort`
-   - `outcomes`
-   - `knowledgeGroups`
-5. Verifier que `stageId` correspond bien a l'id de la phase.
+Le point d entree normal pour les evolutions est `nouveau-fichier-a-traiter/`.
 
-## Ajouter de nouveaux liens
+Quand de nouveaux fichiers sont ajoutes :
 
-1. Retrouver la bulle concernee via son `id`.
-2. Ajouter le lien dans le bon `knowledgeGroup.resources`.
-3. Garder un libelle court et un `type` coherent :
-   - `Documentation`
-   - `Guide`
-   - `Article`
-   - `Spec`
-   - `Course`
-   - `Reference`
+1. analyser les fichiers
+2. identifier la thematique cible
+3. verifier si une expertise existe deja dans cette thematique
+4. enrichir l expertise existante ou en creer une nouvelle
+5. reorganiser les phases et bulles si le sujet est trop gros ou mal place
+6. ajouter les ressources manquantes
 
-## Ajouter un nouvel element d'apprentissage
+## Ajouter une nouvelle expertise
 
-Si c'est un nouveau sous-savoir dans une bulle existante :
+1. Ajouter ou reutiliser une thematique dans `src/data/themes/index.ts`.
+2. Creer la definition d expertise dans `src/data/expertises/`.
+3. Creer le namespace associe dans `src/data/roadmaps/<expertise>/`.
+4. Declarer les phases dans les fichiers `*Stage.ts`.
+5. Assembler l expertise dans `src/data/roadmaps/<expertise>/index.ts`.
 
-1. Ajouter un nouveau `knowledgeGroup`.
-2. Donner un `id` stable.
-3. Ajouter une `description` breve.
-4. Ajouter les ressources dans `resources`.
+## Enrichir une expertise existante
 
-Si le sujet devient trop large :
-
-1. Creer une nouvelle bulle dans la phase adaptee.
-2. Deplacer les `knowledgeGroups` concernes dans cette nouvelle bulle.
+1. Trouver l expertise dans `src/data/expertises/`.
+2. Ouvrir son namespace dans `src/data/roadmaps/`.
+3. Choisir entre :
+   - ajouter une nouvelle bulle a une phase existante
+   - enrichir une bulle existante avec un nouveau `knowledgeGroup`
+   - creer une nouvelle phase si la structure actuelle n est plus suffisante
 
 ## Regles de maintenance
 
 - Ne pas changer un `id` existant sans raison forte.
-- Preferer plusieurs petites bulles coherentes plutot qu'une bulle enorme.
-- Garder les fichiers de phase thematiques et lisibles.
-- Si une expertise grossit trop, il est possible d'ajouter un nouveau namespace dans `src/data/roadmaps/` sans toucher aux autres expertises.
+- Preferer des bulles petites et coherentes.
+- Garder les phases thematiques et lisibles.
+- Ne pas laisser une expertise hors thematique.
+- Considerer `src/data/` comme l unique source de verite.
 - Toujours lancer :
   - `npm run build`
   - `npm run lint`
-
-## Use cases supportes plus facilement maintenant
-
-- "Ajoute une nouvelle bulle dans la bonne section"
-- "Ajoute ces nouveaux liens a telle bulle"
-- "Ajoute un nouveau savoir dans cette partie de la roadmap"
-- "Reorganise une phase sans toucher au rendu"
-
-En pratique, oui : la structure est maintenant fiable pour faire evoluer la roadmap dans le temps sans ralentir chaque mise a jour.

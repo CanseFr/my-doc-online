@@ -3,8 +3,9 @@ import { frontendReactRoadmap } from '../roadmaps/frontendReact'
 
 export const frontendReactExpertise: ExpertiseDefinition = {
   id: 'frontend-react',
+  themeId: 'frontend-engineering',
   slug: 'frontend-react',
-  kind: 'roadmap',
+  kind: 'expertise',
   eyebrow: 'Expertise 02',
   title: 'Frontend React',
   headline: 'Roadmap Frontend React.',

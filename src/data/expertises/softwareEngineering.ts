@@ -3,8 +3,9 @@ import { softwareEngineeringRoadmap } from '../roadmaps/softwareEngineering'
 
 export const softwareEngineeringExpertise: ExpertiseDefinition = {
   id: 'software-engineering',
+  themeId: 'software-engineering',
   slug: 'expertise-logicielle',
-  kind: 'roadmap',
+  kind: 'expertise',
   eyebrow: 'Expertise 01',
   title: 'Expertise logicielle',
   headline: 'Roadmap expertise logicielle.',

@@ -1,9 +1,15 @@
 import type { RoadmapStats } from '../types/roadmap'
 
+interface HeroContext {
+  label: string
+  value: string
+}
+
 interface RoadmapHeroProps {
   eyebrow: string
   title: string
   description: string
+  context?: HeroContext
   stats: RoadmapStats
 }
 
@@ -11,6 +17,7 @@ export function RoadmapHero({
   eyebrow,
   title,
   description,
+  context,
   stats,
 }: RoadmapHeroProps) {
   return (
@@ -19,6 +26,12 @@ export function RoadmapHero({
         <span className="hero-panel__eyebrow">{eyebrow}</span>
         <h1>{title}</h1>
         <p>{description}</p>
+        {context ? (
+          <div className="hero-panel__context">
+            <span>{context.label}</span>
+            <strong>{context.value}</strong>
+          </div>
+        ) : null}
       </div>
 
       <div className="hero-panel__meta" aria-label="Statistiques du parcours">

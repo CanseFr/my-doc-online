@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react'
 import type { ExpertiseDefinition } from '../types/expertise'
+import type { ThemeDefinition } from '../types/theme'
 import { KnowledgePanel } from './KnowledgePanel'
 import { RoadmapHero } from './RoadmapHero'
 import { RoadmapStageSection } from './RoadmapStageSection'
 
-interface ExpertiseRoadmapPageProps {
+interface ExpertiseDetailPageProps {
   expertise: ExpertiseDefinition
+  theme: ThemeDefinition
   onGoHome: () => void
 }
 
-export function ExpertiseRoadmapPage({
+export function ExpertiseDetailPage({
   expertise,
+  theme,
   onGoHome,
-}: ExpertiseRoadmapPageProps) {
+}: ExpertiseDetailPageProps) {
   const [selectedNodeId, setSelectedNodeId] = useState(
     expertise.roadmap.nodes[0]?.id ?? '',
   )
@@ -58,24 +61,25 @@ export function ExpertiseRoadmapPage({
   return (
     <div className="app-shell">
       <button type="button" className="back-link" onClick={onGoHome}>
-        ← Retour aux expertises
+        ← Retour aux thematiques
       </button>
 
       <RoadmapHero
         eyebrow={expertise.eyebrow}
         title={expertise.headline}
         description={expertise.description}
+        context={{ label: 'Thematique', value: theme.title }}
         stats={expertise.roadmap.stats}
       />
 
       <main className="journey" aria-label={`Parcours ${expertise.title}`}>
         <div className="section-heading">
-          <span className="section-heading__eyebrow">Parcours guide</span>
-          <h2>Une progression lisible pour choisir, ouvrir et approfondir chaque etape.</h2>
+          <span className="section-heading__eyebrow">Structure d expertise</span>
+          <h2>Une expertise contient un parcours en phases, puis des bulles techniques a ouvrir.</h2>
           <p>
-            Cette expertise reste autonome dans son propre module de donnees.
-            Le catalogue peut donc accueillir de nouvelles roadmaps specialisees
-            sans alourdir la structure actuelle.
+            Le modele cible est maintenant stable : une thematique regroupe des
+            expertises, chaque expertise contient ses phases, et chaque phase
+            porte des bulles composees de savoirs et de ressources.
           </p>
         </div>
 
