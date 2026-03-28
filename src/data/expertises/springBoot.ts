@@ -3,7 +3,7 @@ import { springBootRoadmap } from '../roadmaps/springBoot'
 
 export const springBootExpertise: ExpertiseDefinition = {
   id: 'spring-boot',
-  themeId: 'backend-java-spring',
+  themeId: 'backend-engineering',
   slug: 'spring-boot',
   kind: 'expertise',
   eyebrow: 'Expertise 05',

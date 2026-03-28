@@ -39,15 +39,15 @@ const themeSeeds: ThemeSeed[] = [
     tags: ['frontend', 'react', 'angular'],
   },
   {
-    id: 'backend-java-spring',
-    slug: 'backend-java-spring',
+    id: 'backend-engineering',
+    slug: 'backend',
     eyebrow: 'Thematique 03',
-    title: 'Backend Java et Spring',
-    headline: 'Thematique backend Java et Spring.',
+    title: 'Backend engineering',
+    headline: 'Thematique backend engineering.',
     summary:
-      'Les expertises backend JVM dediees au conteneur Spring, a la couche web et aux usages de production.',
+      'Les expertises backend structurees par langage, framework et pratiques de production.',
     description:
-      'Cette thematique accueille les expertises backend Java orientees Spring, Spring Boot et ecosysteme associe. Elle est pensee pour grandir avec de nouvelles expertises de persistence, securite ou integration.',
+      'Cette thematique accueille les expertises backend par socle technique. Elle peut regrouper Java, Spring Boot, la persistence, la securite backend, les integrations et d autres expertises serveur sans melanger les niveaux de lecture.',
     tags: ['backend', 'java', 'spring'],
   },
   {

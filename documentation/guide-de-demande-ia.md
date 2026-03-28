@@ -154,8 +154,8 @@ Si tu veux une execution encore plus fiable, les informations les plus utiles so
 
 Formulations tres bonnes :
 
-- `Ajoute une expertise a la thematique Backend Java et Spring`
-- `Complete l expertise Spring Boot de la thematique Backend Java et Spring`
+- `Ajoute une expertise a la thematique Backend engineering`
+- `Complete l expertise Spring Boot de la thematique Backend engineering`
 - `Cree une nouvelle thematique a partir des fichiers de nouveau-fichier-a-traiter`
 - `Analyse les nouveaux fichiers et decide toi-meme s il faut enrichir ou creer`
 
