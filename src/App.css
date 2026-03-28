@@ -25,6 +25,22 @@
   animation: rise-in 0.55s ease both;
 }
 
+.catalog-hero {
+  justify-items: center;
+  text-align: center;
+}
+
+.catalog-hero h1 {
+  margin: 0;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.catalog-hero p {
+  max-width: 62ch;
+  margin: 0;
+}
+
 .catalog-hero::after,
 .empty-state::after {
   content: '';
@@ -662,5 +678,9 @@
 
   .step-bubble {
     min-height: auto;
+  }
+
+  .catalog-hero h1 {
+    max-width: 12ch;
   }
 }

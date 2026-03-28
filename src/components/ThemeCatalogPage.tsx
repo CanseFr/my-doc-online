@@ -13,10 +13,10 @@ export function ThemeCatalogPage({
     <main className="catalog-shell">
       <section className="catalog-hero">
         <span className="catalog-hero__eyebrow">Catalogue thematique</span>
-        <h1>Savoirs & expertise par thematique</h1>
+        <h1>Cartographie des savoirs techniques</h1>
         <p>
-          Connaissance organisée par thematiques, puis par expertises, avant de descendre vers les phases, les bulles, les
-          savoirs et les ressources.
+          Une lecture claire des thematiques, des expertises et de leur
+          decoupage en phases, bulles, savoirs et ressources.
         </p>
       </section>
 
