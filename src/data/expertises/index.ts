@@ -2,6 +2,7 @@ import type { ExpertiseDefinition } from '../../types/expertise'
 import { frontendAngularExpertise } from './frontendAngular'
 import { frontendReactExpertise } from './frontendReact'
 import { interviewExpertise } from './interview'
+import { javaExpertise } from './java'
 import { softwareEngineeringExpertise } from './softwareEngineering'
 import { springBootExpertise } from './springBoot'
 
@@ -10,6 +11,7 @@ export const expertiseCatalog: ExpertiseDefinition[] = [
   interviewExpertise,
   frontendReactExpertise,
   frontendAngularExpertise,
+  javaExpertise,
   springBootExpertise,
 ]
 

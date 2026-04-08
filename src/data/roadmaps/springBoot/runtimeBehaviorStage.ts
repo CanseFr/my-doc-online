@@ -6,7 +6,7 @@ export const runtimeBehaviorStage: RoadmapStage = {
   title: 'Execution, cycle de vie et web layer',
   summary:
     'Passer du simple wiring aux comportements runtime: scopes, lazy init, callbacks de cycle de vie et surface HTTP.',
-  labels: ['2 bulles', 'runtime semantics', 'mvc'],
+  labels: ['3 bulles', 'runtime semantics', 'mvc'],
   nodes: [
     {
       id: 'spring-scopes-lifecycle-and-lazy',
@@ -117,6 +117,58 @@ export const runtimeBehaviorStage: RoadmapStage = {
               label: 'Spring Guide - Building a RESTful Web Service',
               url: 'https://spring.io/guides/gs/rest-service/',
               type: 'Guide',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'spring-transactions-persistence-and-tests',
+      chapter: '3.3',
+      title: 'Transactions, persistance et tests Spring',
+      stageId: 'spring-boot-runtime-behavior',
+      summary:
+        'Completer la couche web par les annotations qui bornent les ecritures en base, les unites transactionnelles et le niveau d integration des tests.',
+      effort: 'Architecture boundaries',
+      outcomes: [
+        'Positionner @Repository, les annotations JPA et @Transactional au bon endroit dans l architecture.',
+        'Comprendre pourquoi les transactions vivent le plus souvent dans la couche service plutot que dans les controllers.',
+        'Choisir entre @SpringBootTest et remplacement cible de beans selon le niveau de confiance recherche dans un test.',
+      ],
+      knowledgeGroups: [
+        {
+          id: 'transaction-boundaries-and-persistence',
+          title: 'Annotations de persistance et frontieres transactionnelles',
+          description:
+            'Les annotations de persistance decrivent le modele stocke, alors que @Transactional borne une unite de travail coherente du point de vue metier.',
+          resources: [
+            {
+              label: 'Spring Framework - Declarative Transaction Management',
+              url: 'https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html',
+              type: 'Documentation',
+            },
+            {
+              label: 'Spring Guide - Accessing Data with JPA',
+              url: 'https://spring.io/guides/gs/accessing-data-jpa/',
+              type: 'Guide',
+            },
+          ],
+        },
+        {
+          id: 'spring-test-slices-and-mocks',
+          title: 'Tests d integration et remplacement cible de beans',
+          description:
+            'Un test Spring utile charge juste assez de contexte pour verifier les bons contrats, sans basculer trop tot vers un contexte complet pour chaque cas.',
+          resources: [
+            {
+              label: 'Spring Boot - Testing',
+              url: 'https://docs.spring.io/spring-boot/reference/testing/index.html',
+              type: 'Documentation',
+            },
+            {
+              label: 'Spring Boot - @MockBean Javadoc',
+              url: 'https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/mock/mockito/MockBean.html',
+              type: 'Reference',
             },
           ],
         },

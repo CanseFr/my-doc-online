@@ -6,7 +6,7 @@ export const configurationAssemblyStage: RoadmapStage = {
   title: 'Configuration et assemblage',
   summary:
     'Piloter le comportement de l application via les proprietes externes et comprendre les classes de configuration Spring.',
-  labels: ['2 bulles', 'external config', 'configuration classes'],
+  labels: ['3 bulles', 'external config', 'configuration classes'],
   nodes: [
     {
       id: 'spring-externalized-configuration',
@@ -124,6 +124,63 @@ export const configurationAssemblyStage: RoadmapStage = {
             {
               label: 'Spring Framework - Using the @Configuration annotation',
               url: 'https://docs.spring.io/spring-framework/reference/core/beans/java/configuration-annotation.html',
+              type: 'Guide',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'spring-startup-arguments-and-binding',
+      chapter: '2.3',
+      title: 'Arguments de lancement, runners et binding',
+      stageId: 'spring-boot-configuration-assembly',
+      summary:
+        'Relier les options de ligne de commande au modele de configuration Spring Boot, puis choisir la bonne abstraction pour lancer un traitement au demarrage.',
+      effort: 'CLI and configuration fit',
+      outcomes: [
+        'Lire proprement des options nommees via ApplicationArguments plutot que parser String[] a la main.',
+        'Choisir entre ApplicationRunner, CommandLineRunner, @Value, Environment et @ConfigurationProperties selon le type de besoin.',
+        'Comprendre que les arguments CLI sont une source de configuration Spring a part entiere et peuvent surcharger application.properties.',
+      ],
+      knowledgeGroups: [
+        {
+          id: 'applicationarguments-and-runners',
+          title: 'ApplicationArguments, ApplicationRunner et CommandLineRunner',
+          description:
+            'Les runners servent a declencher une logique au demarrage, mais ils ne modelisent pas les arguments avec le meme niveau de precision.',
+          resources: [
+            {
+              label: 'Spring Boot - ApplicationArguments Javadoc',
+              url: 'https://docs.spring.io/spring-boot/4.0/api/java/org/springframework/boot/ApplicationArguments.html',
+              type: 'Reference',
+            },
+            {
+              label: 'Spring Boot - ApplicationRunner Javadoc',
+              url: 'https://docs.spring.io/spring-boot/4.0/api/java/org/springframework/boot/ApplicationRunner.html',
+              type: 'Reference',
+            },
+            {
+              label: 'Spring Boot - CommandLineRunner Javadoc',
+              url: 'https://docs.spring.io/spring-boot/4.0/api/java/org/springframework/boot/CommandLineRunner.html',
+              type: 'Reference',
+            },
+          ],
+        },
+        {
+          id: 'binding-and-property-access',
+          title: '@Value, Environment et @ConfigurationProperties',
+          description:
+            'Une option simple peut rester ponctuelle, mais des proprietes liees entre elles gagnent vite a etre regroupees dans un objet type et testable.',
+          resources: [
+            {
+              label: 'Spring Boot - Externalized Configuration',
+              url: 'https://docs.spring.io/spring-boot/reference/features/external-config.html',
+              type: 'Documentation',
+            },
+            {
+              label: 'Spring Boot - Profiles',
+              url: 'https://docs.spring.io/spring-boot/reference/features/profiles.html',
               type: 'Guide',
             },
           ],
